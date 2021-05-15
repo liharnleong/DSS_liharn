@@ -1,6 +1,8 @@
 # NUS DSS template
 a template repo for DSS (Data and Social Science) projects
 
+Hello I'm LIHARN
+
 You can modify this README.md to highlight:
 1. Project overview
 2. Methodology
@@ -59,4 +61,3 @@ Please include requirements.txt
 ```python
 conda list --export > requirements.txt
 ```
-
