@@ -1,7 +1,7 @@
 # NUS DSS template
 a template repo for DSS (Data and Social Science) projects
 
-Hello I'm LIHARN
+Hello I'm Li Harn
 
 You can modify this README.md to highlight:
 1. Project overview
