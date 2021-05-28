@@ -1,38 +1,42 @@
 #initial state
 n<- 0; i1 <- 0; i2 <- 0
 ta <- genArrival(s=0); t1 <- Inf; t2 <- Inf
-now.time <- 0; N<- 0; C1 <- 0; C2 <-0
+now.time <- 0; end.time <- 168; N <- 0; C1 <- 0; C2 <-0; q <- 0
 An <- NULL; Dn <- NULL
 
 #working function
 
 #entering system
 updateArrival <- function(){
-     now.time <<-ta; N<<- N + 1
+     now.time <<- ta; N<<- N + 1
      An[N] <<- now.time
      ta <<- genArrival(s=now.time)
      if(n==0){
        n<<- n + 1
        i1 <<- N
        i2 <<- 0
-       t1 <<- now.time + genServTime.1()
+       t1 <<- now.time + genServTime.1 #if system population is 0, arrival goes to i1 server
      } else if (n==1){
        n <<- 2
-       if(max(t1, t2)==t1){
+       if(max(t1, t2)=t1){
          #server 1 is free
          i1 <<- N
-         t1 <<- now.time + genServTime.1()
+         t1 <<- now.time + genServTime.1 #if departure of i1 is before i2, goes to i1
        } else {
                #server 2 is free
                i2 <<- N
-               t2 <<- now.time + genServTime.2()
+               t2 <<- now.time + genServTime.2 #else, arrival goes to i2
        }
+     } else if (n==2){
+        n <<- 3 #number of customers in system, 2 being served 1 in queue
+        q <<- n - 2
      } else {
              n <<- n + 1
+             q <<- max(0, q - 1)
      }
 }
 
-#exiting system
+#exiting server
 updateDeparture.1 <- function(){
         now.time <<- t1; C1 <<- C1 + 1
         Dn[i1] <<- now.time
