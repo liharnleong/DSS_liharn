@@ -27,12 +27,8 @@ updateArrival <- function(){
                i2 <<- N
                t2 <<- now.time + genServTime.2 #else, arrival goes to i2
        }
-     } else if (n==2){
-        n <<- 3 #number of customers in system, 2 being served 1 in queue
-        q <<- n - 2
      } else {
              n <<- n + 1
-             q <<- max(0, q - 1)
      }
 }
 
