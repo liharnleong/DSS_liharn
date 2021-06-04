@@ -12,7 +12,7 @@ genArrival <- function(s, lambda =14.68){
   t0 <- s ; u <- runif(1)
   t0 <- t0 - (1/lambda )*log(u)
   v <- runif(1)
-  while (v <= get.lambda(t0)/lambda){
+  while (v <= arrival_lambda(t)/lambda){
    u <- runif(1)
    t0 <- t0 + (-1/lambda)*log(u)
    v <- runif(1)
@@ -32,4 +32,18 @@ genPois <- function(s , lambda =12.4){
   }
   I <- I+1
   s <- t0
+}
+
+customer_arrival <- function() {
+  now <<- ta
+  n <<- n + 1
+  num_a <<- num_a + 1
+  arr_lst[num_a] <<- now
+  ta <<- gen_arrival(now)
+  if (n == 1) {
+    i1 <<- num_a
+    td <<- now + gen_departure()
+    wait_lst[num_a] <<- 0
+  }
+  if (n==2)
 }

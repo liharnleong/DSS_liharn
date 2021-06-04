@@ -1,18 +1,12 @@
-genPois <- function(s , lambda =12.4){
-  t0 <- 0; I <- 0
-  u <- runif(1)
-  t0 <- t0 - (1/lambda)*log(u)
-  while (t0<168) {
-    t0 <- FALSE
-  }
-  I <- I+1
-  s <- t0
+genPois <- function(s){
+  lambda = 3 #arrival rate is quarter of daily rate
+  s + rexp(1, rate = lambda)
 }
 genServeTime <- function(){
-  rnorm(1, 0.3, 0.1)
+  rnorm(1, 0.2, 0.1)
 }
 #initial state
-n <- 0; ta <- genPois(s=0); td <- Inf
+n <- 0; ta <- genPois(s=0); td <- Inf; tc <- c()
 now.time <- 0
 end.time <- 168
 arrive.list <- c(); depart.list <- c()
@@ -68,4 +62,5 @@ arrive.list <- arrive.list[-1]
 depart.new <- length(depart.list)
 depart.list <- depart.list[-depart.new]
 
-wait.list <- max(depart.list - arrive.list, 0)
+wait.list <- depart.list - arrive.list
+plot(arrive.list, wait.list)
