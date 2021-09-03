@@ -50,7 +50,7 @@ replicate(
 #################
 gen_arrival <- function(now) {
     # generate next homogenous poisson arrival time
-    lambda <- 6.2
+    lambda <- 6.6
     now + rexp(1, rate = lambda)
 }
 
